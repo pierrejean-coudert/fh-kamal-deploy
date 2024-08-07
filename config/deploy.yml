@@ -1,0 +1,36 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/kjellberg/mrsk/validate-with-json-schema/lib/mrsk/configuration/schema.yaml
+
+# Name of your application. Used to uniquely configure containers.
+service: fasthtml-demo
+
+# Name of the container image.
+image: <%= ENV.fetch('GHCR_REGISTRY_USER') %>/fasthtml-demo
+
+# Deploy to these servers.
+servers: <%= ENV.fetch('SERVER_IPS').split(' ') %>
+
+# Credentials for your image host.
+registry:
+
+  # Specify the registry server, if you're not using Docker Hub
+  # server: registry.digitalocean.com / ghcr.io / ...
+  server:  ghcr.io
+  username: 
+    - GHCR_REGISTRY_USER
+  # Always use an access token rather than real password when possible.
+  password:
+    - GHCR_TOKEN
+
+ssh:
+  user: ubuntu
+
+# Configure builder setup.
+builder:
+  multiarch: false
+
+
+# Configure a custom healthcheck (default is /up on port 3000)
+healthcheck:
+   path: /healthz
+   port: 8000
+
