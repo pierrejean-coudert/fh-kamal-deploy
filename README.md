@@ -61,6 +61,8 @@ Open http://localhost:8000 in your browser.
 
 ## Deploy to VPS
 
+### Provision a cheap VPS
+
 
 ### Prepare your VPS
 
@@ -70,6 +72,8 @@ ssh ubuntu@vps-ip
 
 copy or create a ssh key 
 
+### Install base packages
+
 ```bash
 sudo apt update && apt upgrade -y
 sudo apt install -y docker.io curl git
@@ -77,13 +81,13 @@ sudo usermod -a -G docker ubuntu
 sudo mkdir -p /letsencrypt && sudo touch /letsencrypt/acme.json && sudo chmod 600 /letsencrypt/acme.json
 ```
 
-### For initial setup
+### Initial setup
 
 `kamal setup`
 
 ### Standard deployment
 
-to deploy latest release
+Deploy latest release
 
 `kamal deploy`
 
